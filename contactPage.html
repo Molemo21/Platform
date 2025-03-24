@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .contact-form-container {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+    }
+    
+    .confirmation-message {
+      display: none;
+      text-align: center;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.2);
+      border-radius: var(--border-radius);
+      margin-top: 2rem;
+    }
+    
+    .confirmation-message.active {
+      display: block;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">ProLiink Connect</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="contact-page" style="background: linear-gradient(to bottom right, var(--primary), var(--secondary)); min-height: calc(100vh - 140px); padding: 2rem 0;">
+    <div class="container">
+      <h1 class="section-title" style="color: var(--white);">Contact Us</h1>
+      <p class="section-subtitle" style="color: var(--white);">Have questions or need assistance? Our team is here to help. Reach out to us using the form below.</p>
+      
+      <div class="contact-form-container">
+        <form id="contact-form" class="contact-form">
+          <div class="form-group">
+            <label for="name" style="color: var(--white);">Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
+          <div class="form-group">
+            <label for="email" style="color: var(--white);">Email</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="message" style="color: var(--white);">Message</label>
+            <textarea id="message" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+        </form>
+        
+        <div class="confirmation-message" id="confirmation-message">
+          <i class="fas fa-check-circle" style="font-size: 3rem; color: var(--white); margin-bottom: 1rem;"></i>
+          <p style="color: var(--white); font-size: 1.2rem;">Message sent successfully!</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+        <nav class="footer-nav">
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // In a real application, you would send the form data to a server
+      
+      // Hide the form
+      this.style.display = 'none';
+      
+      // Show confirmation message
+      document.getElementById('confirmation-message').classList.add('active');
+      
+      // Reset form
+      this.reset();
+      
+      // After 3 seconds, hide confirmation and show form again
+      setTimeout(() => {
+        document.getElementById('confirmation-message').classList.remove('active');
+        this.style.display = 'block';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

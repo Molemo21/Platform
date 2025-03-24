@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .dashboard-container {
+      display: flex;
+      min-height: calc(100vh - 140px);
+    }
+    
+    .sidebar {
+      width: 250px;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 2rem 0;
+    }
+    
+    .sidebar-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .sidebar-menu-item {
+      padding: 0.75rem 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .sidebar-menu-item:hover, .sidebar-menu-item.active {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    .sidebar-menu-item i {
+      margin-right: 0.75rem;
+      width: 20px;
+      text-align: center;
+    }
+    
+    .main-content {
+      flex: 1;
+      padding: 2rem;
+      background-color: var(--gray-100);
+    }
+    
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+    
+    .user-welcome {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .user-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--gray-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--gray-700);
+    }
+    
+    .dashboard-card {
+      background-color: var(--white);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .stat-card {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+    
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .stat-content h3 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+    
+    .stat-content p {
+      margin: 0;
+      color: var(--gray-500);
+    }
+    
+    .table-responsive {
+      overflow-x: auto;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--gray-200);
+    }
+    
+    th {
+      font-weight: 600;
+      color: var(--gray-700);
+    }
+    
+    tr:last-child td {
+      border-bottom: none;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+    
+    .status-active {
+      background-color: #d4edda;
+      color: #155724;
+    }
+    
+    .status-pending {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+    
+    .status-inactive {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+    
+    .action-buttons {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .action-button {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: var(--gray-100);
+      color: var(--gray-700);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .action-button:hover {
+      background-color: var(--gray-200);
+    }
+    
+    @media (max-width: 768px) {
+      .dashboard-container {
+        flex-direction: column;
+      }
+      
+      .sidebar {
+        width: 100%;
+        padding: 1rem 0;
+      }
+      
+      .sidebar-menu {
+        display: flex;
+        overflow-x: auto;
+      }
+      
+      .sidebar-menu-item {
+        padding: 0.5rem 1rem;
+        white-space: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">ProLiink Connect</a>
+        <div class="auth-buttons">
+          <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch" class="theme-switch">
+            <label for="theme-switch" class="theme-switch-label">
+              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <a href="profile.html" class="btn btn-outline">
+            <i class="fas fa-user"></i>
+          </a>
+          <a href="index.html" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <ul class="sidebar-menu">
+        <li class="sidebar-menu-item active">
+          <i class="fas fa-tachometer-alt"></i> Dashboard
+        </li>
+        <li class="sidebar-menu-item">
+          <i class="fas fa-users"></i> Users
+        </li>
+        <li class="sidebar-menu-item">
+          <i class="fas fa-briefcase"></i> Contractors
+        </li>
+        <li class="sidebar-menu-item">
+          <i class="fas fa-calendar-alt"></i> Bookings
+        </li>
+        <li class="sidebar-menu-item">
+          <i class="fas fa-star"></i> Reviews
+        </li>
+        <li class="sidebar-menu-item">
+          <i class="fas fa-chart-bar"></i> Reports
+        </li>
+        <li class="sidebar-menu-item">
+          <i class="fas fa-cog"></i> Settings
+        </li>
+      </ul>
+    </aside>
+    
+    <main class="main-content">
+      <div class="dashboard-header">
+        <div class="user-welcome">
+          <div class="user-avatar">
+            <i class="fas fa-user-shield"></i>
+          </div>
+          <div>
+            <h2>Welcome, Admin</h2>
+            <p>System Administrator</p>
+          </div>
+        </div>
+        <div>
+          <button class="btn btn-primary">
+            <i class="fas fa-download"></i> Export Data
+          </button>
+        </div>
+      </div>
+      
+      <div class="dashboard-grid">
+        <div class="dashboard-card">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-content">
+              <h3>1,245</h3>
+              <p>Total Users</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dashboard-card">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-briefcase"></i>
+            </div>
+            <div class="stat-content">
+              <h3>328</h3>
+              <p>Contractors</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dashboard-card">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-content">
+              <h3>856</h3>
+              <p>Total Bookings</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="dashboard-card">
+          <div class="stat-card">
+            <div class="stat-icon">
+              <i class="fas fa-money-bill-wave"></i>
+            </div>
+            <div class="stat-content">
+              <h3>R125,450</h3>
+              <p>Total Revenue</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="dashboard-card">
+        <h3>Recent Contractor Applications</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Service</th>
+                <th>Location</th>
+                <th>Date Applied</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>James Wilson</td>
+                <td>Electrician</td>
+                <td>Johannesburg</td>
+                <td>Mar 10, 2024</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-check"></i></button>
+                    <button class="action-button"><i class="fas fa-times"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Emily Davis</td>
+                <td>Hairdresser</td>
+                <td>Cape Town</td>
+                <td>Mar 9, 2024</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-check"></i></button>
+                    <button class="action-button"><i class="fas fa-times"></i></button>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>David Johnson</td>
+                <td>Plumber</td>
+                <td>Durban</td>
+                <td>Mar 8, 2024</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+                <td>
+                  <div class="action-buttons">
+                    <button class="action-button"><i class="fas fa-eye"></i></button>
+                    <button class="action-button"><i class="fas fa-check"></i></button>
+                    <button class="action-button"><i class="fas fa-times"></i></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="text-align: center; margin-top: 1rem;">
+          <a href="#" class="btn btn-outline">View All Applications</a>
+        </div>
+      </div>
+      
+      <div class="dashboard-card">
+        <h3>Recent Bookings</h3>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>Client</th>
+                <th>Contractor</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>John Smith</td>
+                <td>Mike Johnson</td>
+                <td>Plumbing</td>
+                <td>Mar 15, 2024</td>
+                <td>R600</td>
+                <td><span class="status-badge status-active">Confirmed</span></td>
+              </tr>
+              <tr>
+                <td>Sarah Williams</td>
+                <td>Lisa Brown</td>
+                <td>Hairdressing</td>
+                <td>Mar 14, 2024</td>
+                <td>R350</td>
+                <td><span class="status-badge status-active">Completed</span></td>
+              </tr>
+              <tr>
+                <td>Robert Davis</td>
+                <td>Tom Wilson</td>
+                <td>Electrical</td>
+                <td>Mar 13, 2024</td>
+                <td>R800</td>
+                <td><span class="status-badge status-pending">Pending</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="text-align: center; margin-top: 1rem;">
+          <a href="#" class="btn btn-outline">View All Bookings</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+        <nav class="footer-nav">
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

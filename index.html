@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="#" class="logo">ProLiink Connect</a>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link dropdown-toggle">Category <i class="fas fa-chevron-down"></i></a>
+              <div class="dropdown-menu">
+                <a href="#" class="dropdown-item"><i class="fas fa-wrench"></i> Plumber</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-bolt"></i> Electrician</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-leaf"></i> Gardener</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-cut"></i> Hairdresser</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-paint-brush"></i> Painter</a>
+                <a href="#" class="dropdown-item"><i class="fas fa-spa"></i> Spa Treatments</a>
+              </div>
+            </li>
+            <li class="nav-item"><a href="#how-it-works" class="nav-link">How It Works</a></li>
+            <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="#features" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="login.html" class="btn btn-outline">Login</a>
+          <a href="demo.html" class="btn btn-outline">Demo</a>
+          <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle">Register</button>
+            <div class="dropdown-menu">
+              <a href="registerClient.html" class="dropdown-item">Register as Client</a>
+              <a href="registerContractor.html" class="dropdown-item">Register as Contractor</a>
+            </div>
+          </div>
+          <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch" class="theme-switch">
+            <label for="theme-switch" class="theme-switch-label">
+              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i>
+              <span class="slider"></span>
+            </label>
+          </div>
+        </div>
+        <button class="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-slideshow">
+        <!-- Slideshow images will be inserted here by JavaScript -->
+      </div>
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="hero-content">
+          <h1 class="hero-title">Find Reliable Contractors Instantly – Fast, Safe & Verified!</h1>
+          <p class="hero-subtitle">Connect with trusted plumbers, electricians, and other skilled contractors in your area. Hassle-free and transparent pricing!</p>
+          <div class="search-box">
+            <input type="text" placeholder="Search for a service...">
+            <button class="btn btn-secondary">Search</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2 class="section-title">Our Services</h2>
+        <div class="services-grid">
+          <!-- Service cards will be inserted here by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+      <div class="container">
+        <h2 class="section-title">How ProLiink Connect Works</h2>
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Choose a Service</h3>
+            <div class="step-content">
+              <i class="fas fa-search"></i>
+              <p>Browse through our categories or use the search function to find the service you need.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Provide Details</h3>
+            <div class="step-content">
+              <i class="fas fa-file-alt"></i>
+              <p>Describe your job, set your budget, and choose a date and time that works for you.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Get Matched</h3>
+            <div class="step-content">
+              <i class="fas fa-user-check"></i>
+              <p>We'll match you with available, qualified contractors in your area.</p>
+            </div>
+          </div>
+          <div class="step-card">
+            <div class="step-number">4</div>
+            <h3 class="step-title">Confirm and Book</h3>
+            <div class="step-content">
+              <i class="fas fa-calendar-check"></i>
+              <p>Review the details, confirm your booking, and wait for your service provider to arrive.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+      <div class="container">
+        <h2 class="section-title">Why Choose ProLiink Connect</h2>
+        <div class="features-grid">
+          <div class="feature-card">
+            <h3 class="feature-title"><i class="fas fa-shield-alt"></i> Verified Professionals</h3>
+            <p>All service providers are thoroughly vetted and verified for your peace of mind</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="feature-title"><i class="fas fa-clock"></i> Instant Booking</h3>
+            <p>Book services instantly with our easy-to-use platform</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="feature-title"><i class="fas fa-check-circle"></i> Quality Guaranteed</h3>
+            <p>We ensure high-quality service delivery with our satisfaction guarantee</p>
+          </div>
+          <div class="feature-card">
+            <h3 class="feature-title"><i class="fas fa-users"></i> Growing Community</h3>
+            <p>Join our growing community of satisfied clients and trusted professionals</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title">About ProLiink Connect</h2>
+        <div class="about-content">
+          <p>ProLiink Connect is a revolutionary platform that bridges the gap between skilled professionals and clients in need of their services. Our mission is to simplify the process of finding and hiring reliable contractors, ensuring a seamless experience for both service providers and customers.</p>
+          <p>Founded in 2024, we've quickly grown to become a trusted name in the industry, connecting thousands of professionals with clients across the country. Our commitment to quality, transparency, and customer satisfaction sets us apart in the world of service marketplaces.</p>
+          <p>At ProLiink Connect, we believe in empowering both our contractors and clients. We provide a platform where skilled professionals can showcase their expertise and grow their businesses, while clients can easily find vetted, reliable services for all their needs.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mobile App Section -->
+    <section id="mobile-app" class="mobile-app">
+      <div class="container">
+        <div class="mobile-app-content">
+          <div class="mobile-app-text">
+            <h2 class="section-title">Mobile App Coming Soon</h2>
+            <p>Get ready for an even more convenient way to find and book contractors. Our mobile app is currently in development and will be launching soon!</p>
+            <div class="mobile-app-features">
+              <h3>Features to Look Forward to:</h3>
+              <ul>
+                <li>Real-time booking and tracking</li>
+                <li>Instant messaging with contractors</li>
+                <li>Service history and reviews</li>
+                <li>Push notifications for updates</li>
+              </ul>
+            </div>
+          </div>
+          <div class="mobile-app-image">
+            <img src="images/app-preview.png" alt="ProLiink Connect Mobile App Preview">
+            <span class="coming-soon-badge">Coming Soon</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Waitlist Section -->
+    <section id="waitlist" class="waitlist">
+      <div class="container">
+        <h2 class="section-title">Join Our Waitlist</h2>
+        <p class="section-subtitle">Be the first to know when we launch and get exclusive early access to our platform.</p>
+        <div class="waitlist-form-container">
+          <form id="waitlist-form" class="waitlist-form">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Enter your email" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Join Waitlist</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="section-subtitle">Have questions or need assistance? Our team is here to help. Reach out to us using the information below.</p>
+        <div class="contact-info">
+          <div class="contact-item">
+            <h3>Email</h3>
+            <p>support@proliinkconnect.com</p>
+          </div>
+          <div class="contact-item">
+            <h3>Phone</h3>
+            <p>+27 78 128 3697</p>
+          </div>
+        </div>
+        <div class="contact-button">
+          <a href="contact.html" class="btn btn-light">Send Us a Message</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+      <div class="container">
+        <h2 class="section-title">Ready to Get Started?</h2>
+        <p class="section-subtitle">Find the perfect contractor for your project or join our network of skilled professionals.</p>
+        <div class="cta-buttons">
+          <a href="login.html" class="btn btn-light">Find a Contractor</a>
+          <a href="registerContractor.html" class="btn btn-outline-light">Join as a Contractor</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+        <nav class="footer-nav">
+          <a href="#" class="footer-link" id="terms-link">Terms of Service</a>
+          <a href="#" class="footer-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Chat Widget -->
+  <div class="chat-widget">
+    <button class="chat-toggle">
+      <i class="fas fa-comment"></i>
+    </button>
+    <div class="chat-container" id="chat-container">
+      <div class="chat-header">
+        <h3>Chat with us</h3>
+        <button class="chat-close"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="chat-messages" id="chat-messages">
+        <div class="message bot">
+          <div class="message-content">Hello! How can I assist you today?</div>
+        </div>
+      </div>
+      <form id="chat-form" class="chat-form">
+        <input type="text" id="chat-input" placeholder="Type your message...">
+        <button type="submit" class="btn btn-primary">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Terms of Service Modal -->
+  <div class="modal" id="terms-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Terms of Service</h2>
+        <button class="modal-close">&times;</button>
+      </div>
+      <div class="modal-body">
+        <!-- Terms of Service content would go here -->
+        <p>These are the terms and conditions for using ProLiink Connect...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-top" id="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <script src="main.js"></script>
+</body>
+</html>

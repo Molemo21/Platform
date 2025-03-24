@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as Client - ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .register-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">ProLiink Connect</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="register-page" style="background: linear-gradient(to bottom right, var(--primary), var(--secondary)); min-height: calc(100vh - 140px); padding: 2rem 0;">
+    <div class="container">
+      <div class="register-container">
+        <h1 class="section-title" style="color: var(--white); margin-bottom: 1rem;">Register as a Client</h1>
+        <p class="section-subtitle" style="color: var(--white); margin-bottom: 2rem;">Create your account to find reliable contractors</p>
+        
+        <form id="register-client-form" class="register-form">
+          <div class="form-group">
+            <label for="name" style="color: var(--white);">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label for="email" style="color: var(--white);">Email</label>
+            <input type="email" id="email" name="email" placeholder="m@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone" style="color: var(--white);">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required>
+          </div>
+          <div class="form-group">
+            <label for="password" style="color: var(--white);">Password</label>
+            <input type="password" id="password" name="password" required>
+          </div>
+          <div class="form-group">
+            <label for="location" style="color: var(--white);">Location (City/Area)</label>
+            <input type="text" id="location" name="location" placeholder="Mthatha" required>
+          </div>
+          <div class="form-group">
+            <label for="profile-picture" style="color: var(--white);">Profile Picture (Optional)</label>
+            <input type="file" id="profile-picture" name="profile-picture" accept="image/*">
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </form>
+        
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <p style="color: var(--white);">Already have an account? <a href="login.html" style="color: var(--white); text-decoration: underline;">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    document.getElementById('register-client-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // In a real application, you would send the form data to a server
+      alert('Registration successful! You can now login.');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

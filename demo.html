@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .demo-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 2rem;
+    }
+    
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--white);
+    }
+    
+    .tab:first-child {
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+    
+    .tab:last-child {
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    
+    .tab.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .demo-frame {
+      width: 100%;
+      height: 600px;
+      border: none;
+      border-radius: var(--border-radius);
+      background-color: var(--white);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i>
+          Back to ProLiink
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="demo-page" style="background: linear-gradient(to bottom right, var(--primary), var(--secondary)); min-height: calc(100vh - 140px); padding: 2rem 0;">
+    <div class="container">
+      <h1 class="section-title" style="color: var(--white);">Experience ProLiink Connect</h1>
+      
+      <div class="demo-container">
+        <div class="tabs">
+          <div class="tab active" data-tab="mobile">
+            <i class="fas fa-mobile-alt" style="margin-right: 0.5rem;"></i> Mobile
+          </div>
+          <div class="tab" data-tab="tablet">
+            <i class="fas fa-tablet-alt" style="margin-right: 0.5rem;"></i> Tablet
+          </div>
+          <div class="tab" data-tab="desktop">
+            <i class="fas fa-desktop" style="margin-right: 0.5rem;"></i> Desktop
+          </div>
+        </div>
+        
+        <div class="tab-content active" id="mobile-tab">
+          <div style="max-width: 320px; margin: 0 auto; height: 600px;">
+            <iframe src="https://embed.figma.com/proto/iYN0cwmAGPiKj8PPxSGz5Y/Prototype?node-id=110-19931&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A46&show-proto-sidebar=1&embed-host=share" class="demo-frame"></iframe>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="tablet-tab">
+          <div style="max-width: 768px; margin: 0 auto; height: 600px;">
+            <iframe src="https://embed.figma.com/proto/iYN0cwmAGPiKj8PPxSGz5Y/Prototype?node-id=110-19931&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A46&show-proto-sidebar=1&embed-host=share" class="demo-frame"></iframe>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="desktop-tab">
+          <div style="max-width: 1024px; margin: 0 auto; height: 600px;">
+            <iframe src="https://embed.figma.com/proto/iYN0cwmAGPiKj8PPxSGz5Y/Prototype?node-id=110-19931&p=f&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=1%3A46&show-proto-sidebar=1&embed-host=share" class="demo-frame"></iframe>
+          </div>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 2rem;">
+        <p style="color: var(--white); font-size: 1.2rem; margin-bottom: 1rem;">Explore the ProLiink Connect platform across different devices. Navigate through our intuitive interface and experience the seamless booking process.</p>
+        <a href="registerClient.html" class="btn btn-light">Get Started Now</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>

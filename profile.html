@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .profile-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+    }
+    
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .profile-avatar {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background-color: var(--gray-300);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      color: var(--primary);
+      position: relative;
+    }
+    
+    .avatar-upload {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    
+    .profile-info h2 {
+      margin: 0;
+      color: var(--white);
+    }
+    
+    .profile-info p {
+      margin: 0;
+      color: var(--gray-300);
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 2rem;
+    }
+    
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: var(--transition);
+      color: var(--white);
+    }
+    
+    .tab:first-child {
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+    
+    .tab:last-child {
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    
+    .tab.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .payment-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .card-type {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    .card-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .card-action {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--white);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .card-action:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .card-number {
+      color: var(--white);
+      font-size: 1.25rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .card-details {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .card-detail {
+      color: var(--gray-300);
+      font-size: 0.875rem;
+    }
+    
+    .card-detail span {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    .address-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .address-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+    }
+    
+    .address-type {
+      color: var(--white);
+      font-weight: 500;
+    }
+    
+    .address-content {
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    
+    .address-actions {
+      display: flex;
+      gap: 0.5rem;
+    }
+    
+    .notification-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .notification-item:last-child {
+      border-bottom: none;
+    }
+    
+    .notification-label {
+      color: var(--white);
+    }
+    
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+    }
+    
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    .toggle-slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--gray-300);
+      transition: var(--transition);
+      border-radius: 30px;
+    }
+    
+    .toggle-slider:before {
+      position: absolute;
+      content: "";
+      height: 22px;
+      width: 22px;
+      left: 4px;
+      bottom: 4px;
+      background-color: var(--white);
+      transition: var(--transition);
+      border-radius: 50%;
+    }
+    
+    input:checked + .toggle-slider {
+      background-color: #4CAF50;
+    }
+    
+    input:checked + .toggle-slider:before {
+      transform: translateX(30px);
+    }
+    
+    @media (max-width: 768px) {
+      .profile-header {
+        flex-direction: column;
+        text-align: center;
+      }
+      
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">ProLiink Connect</a>
+        <div class="auth-buttons">
+          <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch" class="theme-switch">
+            <label for="theme-switch" class="theme-switch-label">
+              <i class="fas fa-sun"></i>
+              <i class="fas fa-moon"></i>
+              <span class="slider"></span>
+            </label>
+          </div>
+          <a href="dashboardClient.html" class="btn btn-outline">
+            <i class="fas fa-tachometer-alt"></i>
+          </a>
+          <a href="index.html" class="btn btn-primary">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="profile-page" style="background: linear-gradient(to bottom right, var(--primary), var(--secondary)); min-height: calc(100vh - 140px); padding: 2rem 0;">
+    <div class="container">
+      <div class="profile-container">
+        <div class="profile-header">
+          <div class="profile-avatar">
+            <i class="fas fa-user"></i>
+            <div class="avatar-upload">
+              <i class="fas fa-camera"></i>
+              <input type="file" id="avatar-upload" style="display: none;">
+            </div>
+          </div>
+          <div class="profile-info">
+            <h2>John Doe</h2>
+            <p>Client</p>
+            <p>john.doe@example.com</p>
+            <p>+1 (555) 123-4567</p>
+          </div>
+        </div>
+        
+        <div class="tabs">
+          <div class="tab active" data-tab="personal">
+            <i class="fas fa-user" style="margin-right: 0.5rem;"></i> Personal Info
+          </div>
+          <div class="tab" data-tab="payment">
+            <i class="fas fa-credit-card" style="margin-right: 0.5rem;"></i> Payment Methods
+          </div>
+          <div class="tab" data-tab="addresses">
+            <i class="fas fa-map-marker-alt" style="margin-right: 0.5rem;"></i> Addresses
+          </div>
+          <div class="tab" data-tab="notifications">
+            <i class="fas fa-bell" style="margin-right: 0.5rem;"></i> Notifications
+          </div>
+        </div>
+        
+        <div class="tab-content active" id="personal-tab">
+          <form id="personal-info-form">
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="first-name" style="color: var(--white);">First Name</label>
+                <input type="text" id="first-name" name="first-name" value="John">
+              </div>
+              <div class="form-group">
+                <label for="last-name" style="color: var(--white);">Last Name</label>
+                <input type="text" id="last-name" name="last-name" value="Doe">
+              </div>
+              <div class="form-group">
+                <label for="email" style="color: var(--white);">Email</label>
+                <input type="email" id="email" name="email" value="john.doe@example.com">
+              </div>
+              <div class="form-group">
+                <label for="phone" style="color: var(--white);">Phone Number</label>
+                <input type="tel" id="phone" name="phone" value="+1 (555) 123-4567">
+              </div>
+            </div>
+            
+            <div class="form-group" style="margin-top: 1.5rem;">
+              <label for="bio" style="color: var(--white);">Bio (Optional)</label>
+              <textarea id="bio" name="bio" rows="4" placeholder="Tell us a bit about yourself"></textarea>
+            </div>
+            
+            <div style="margin-top: 1.5rem;">
+              <h4 style="color: var(--white); margin-bottom: 1rem;">Change Password</h4>
+              <div class="form-grid">
+                <div class="form-group">
+                  <label for="current-password" style="color: var(--white);">Current Password</label>
+                  <input type="password" id="current-password" name="current-password">
+                </div>
+                <div class="form-group">
+                  <label for="new-password" style="color: var(--white);">New Password</label>
+                  <input type="password" id="new-password" name="new-password">
+                </div>
+                <div class="form-group">
+                  <label for="confirm-password" style="color: var(--white);">Confirm New Password</label>
+                  <input type="password" id="confirm-password" name="confirm-password">
+                </div>
+              </div>
+            </div>
+            
+            <div style="text-align: right; margin-top: 2rem;">
+              <button type="submit" class="btn btn-primary">Save Changes</button>
+            </div>
+          </form>
+        </div>
+        
+        <div class="tab-content" id="payment-tab">
+          <div class="payment-card">
+            <div class="card-header">
+              <div class="card-type">
+                <i class="fab fa-cc-visa" style="font-size: 1.5rem;"></i>
+                <span>Visa</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-action"><i class="fas fa-pencil-alt"></i></button>
+                <button class="card-action"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="card-number">**** **** **** 4567</div>
+            <div class="card-details">
+              <div class="card-detail">Expires: <span>09/25</span></div>
+              <div class="card-detail">Default</div>
+            </div>
+          </div>
+          
+          <div class="payment-card">
+            <div class="card-header">
+              <div class="card-type">
+                <i class="fab fa-cc-mastercard" style="font-size: 1.5rem;"></i>
+                <span>Mastercard</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-action"><i class="fas fa-pencil-alt"></i></button>
+                <button class="card-action"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="card-number">**** **** **** 8901</div>
+            <div class="card-details">
+              <div class="card-detail">Expires: <span>12/24</span></div>
+              <div class="card-detail"></div>
+            </div>
+          </div>
+          
+          <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn btn-primary">
+              <i class="fas fa-plus" style="margin-right: 0.5rem;"></i> Add Payment Method
+            </button>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="addresses-tab">
+          <div class="address-card">
+            <div class="address-header">
+              <div class="address-type">Home (Default)</div>
+              <div class="address-actions">
+                <button class="card-action"><i class="fas fa-pencil-alt"></i></button>
+                <button class="card-action"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="address-content">123 Main Street</div>
+            <div class="address-content">Apt 4B</div>
+            <div class="address-content">New York, NY 10001</div>
+            <div class="address-content">United States</div>
+          </div>
+          
+          <div class="address-card">
+            <div class="address-header">
+              <div class="address-type">Work</div>
+              <div class="address-actions">
+                <button class="card-action"><i class="fas fa-pencil-alt"></i></button>
+                <button class="card-action"><i class="fas fa-trash-alt"></i></button>
+              </div>
+            </div>
+            <div class="address-content">456 Business Ave</div>
+            <div class="address-content">Suite 200</div>
+            <div class="address-content">New York, NY 10002</div>
+            <div class="address-content">United States</div>
+          </div>
+          
+          <div style="text-align: center; margin-top: 2rem;">
+            <button class="btn btn-primary">
+              <i class="fas fa-plus" style="margin-right: 0.5rem;"></i> Add Address
+            </button>
+          </div>
+        </div>
+        
+        <div class="tab-content" id="notifications-tab">
+          <div class="notification-item">
+            <div class="notification-label">Email Notifications</div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="notification-item">
+            <div class="notification-label">SMS Notifications</div>
+            <label class="toggle-switch">
+              <input type="checkbox" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="notification-item">
+            <div class="notification-label">Push Notifications</div>
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div class="notification-item">
+            <div class="notification-label">Marketing Communications</div>
+            <label class="toggle-switch">
+              <input type="checkbox">
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+          
+          <div style="text-align: right; margin-top: 2rem;">
+            <button class="btn btn-primary">Save Preferences</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+        <nav class="footer-nav">
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
+    
+    // Avatar upload
+    document.querySelector('.avatar-upload').addEventListener('click', () => {
+      document.getElementById('avatar-upload').click();
+    });
+    
+    document.getElementById('avatar-upload').addEventListener('change', function(e) {
+      if (this.files && this.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const profileAvatar = document.querySelector('.profile-avatar');
+          profileAvatar.innerHTML = `<img src="${e.target.result}" alt="Profile" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover;">`;
+          profileAvatar.appendChild(document.querySelector('.avatar-upload'));
+        }
+        reader.readAsDataURL(this.files[0]);
+      }
+    });
+    
+    // Form submission
+    document.getElementById('personal-info-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Profile updated successfully!');
+    });
+  </script>
+</body>
+</html>

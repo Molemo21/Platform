@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gardening Services - ProLiink Connect</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .service-detail-container {
+      max-width: 1000px;
+      margin: 2rem auto;
+    }
+    
+    .service-card {
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      backdrop-filter: blur(10px);
+      transition: var(--transition);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-5px);
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="../index.html" class="logo">ProLiink Connect</a>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item"><a href="../index.html#services" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="../index.html#how-it-works" class="nav-link">How It Works</a></li>
+            <li class="nav-item"><a href="../index.html#about" class="nav-link">About</a></li>
+            <li class="nav-item"><a href="../index.html#features" class="nav-link">Features</a></li>
+            <li class="nav-item"><a href="../index.html#contact" class="nav-link">Contact</a></li>
+          </ul>
+        </nav>
+        <div class="auth-buttons">
+          <a href="../login.html" class="btn btn-outline">Login</a>
+          <a href="../registerClient.html" class="btn btn-primary">Register</a>
+        </div>
+        <button class="mobile-menu-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="service-detail-page" style="background: linear-gradient(to bottom right, var(--primary), var(--secondary)); min-height: calc(100vh - 140px); padding: 2rem 0;">
+    <div class="container">
+      <a href="../index.html#services" class="btn btn-light" style="margin-bottom: 2rem;">
+        <i class="fas fa-arrow-left" style="margin-right: 0.5rem;"></i> Back to Services
+      </a>
+      
+      <h1 class="section-title" style="color: var(--white);">Gardening Services</h1>
+      <p class="section-subtitle" style="color: var(--white);">Professional gardening solutions for your outdoor spaces</p>
+      
+      <div class="service-detail-container">
+        <div class="service-card">
+          <h3 style="color: var(--white); margin-bottom: 1rem;">Lawn Maintenance</h3>
+          <p style="color: var(--white); margin-bottom: 1rem;">Regular lawn mowing, edging, and maintenance</p>
+          <p style="color: var(--white); font-weight: 600; margin-bottom: 1.5rem;">From R600</p>
+          <a href="../login.html" class="btn btn-light btn-block">Book Now</a>
+        </div>
+        
+        <div class="service-card">
+          <h3 style="color: var(--white); margin-bottom: 1rem;">Landscaping</h3>
+          <p style="color: var(--white); margin-bottom: 1rem;">Professional landscape design and implementation</p>
+          <p style="color: var(--white); font-weight: 600; margin-bottom: 1.5rem;">From R1200</p>
+          <a href="../login.html" class="btn btn-light btn-block">Book Now</a>
+        </div>
+        
+        <div class="service-card">
+          <h3 style="color: var(--white); margin-bottom: 1rem;">Tree & Shrub Care</h3>
+          <p style="color: var(--white); margin-bottom: 1rem;">Pruning, trimming, and maintenance of trees and shrubs</p>
+          <p style="color: var(--white); font-weight: 600; margin-bottom: 1.5rem;">From R800</p>
+          <a href="../login.html" class="btn btn-light btn-block">Book Now</a>
+        </div>
+        
+        <div class="service-card">
+          <h3 style="color: var(--white); margin-bottom: 1rem;">Garden Cleanup</h3>
+          <p style="color: var(--white); margin-bottom: 1rem;">Seasonal garden cleanup and waste removal</p>
+          <p style="color: var(--white); font-weight: 600; margin-bottom: 1.5rem;">From R500</p>
+          <a href="../login.html" class="btn btn-light btn-block">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+        <nav class="footer-nav">
+          <a href="#" class="footer-link">Terms of Service</a>
+          <a href="#" class="footer-link">Privacy</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

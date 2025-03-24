@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register as Contractor - ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .register-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+    }
+    
+    .step-indicator {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+    
+    .step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.5rem;
+      color: var(--white);
+    }
+    
+    .step.active .step-number {
+      background-color: var(--white);
+      color: var(--primary);
+    }
+    
+    .step-label {
+      font-size: 0.8rem;
+      color: var(--white);
+    }
+    
+    .step-content {
+      display: none;
+    }
+    
+    .step-content.active {
+      display: block;
+    }
+    
+    .step-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">ProLiink Connect</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="register-page" style="background: linear-gradient(to bottom right, var(--primary), var(--secondary)); min-height: calc(100vh - 140px); padding: 2rem 0;">
+    <div class="container">
+      <div class="register-container">
+        <h1 class="section-title" style="color: var(--white); margin-bottom: 1rem;">Register as a Contractor</h1>
+        <p class="section-subtitle" style="color: var(--white); margin-bottom: 2rem;">Create your account to offer your services</p>
+        
+        <div class="step-indicator">
+          <div class="step active" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-label">Personal Info</div>
+          </div>
+          <div class="step" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-label">Service Type</div>
+          </div>
+          <div class="step" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-label">Verification</div>
+          </div>
+        </div>
+        
+        <form id="register-contractor-form">
+          <div class="step-content active" id="step-1">
+            <div class="form-group">
+              <label for="name" style="color: var(--white);">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="business-name" style="color: var(--white);">Business Name (Optional)</label>
+              <input type="text" id="business-name" name="business-name" placeholder="John's Plumbing">
+            </div>
+            <div class="form-group">
+              <label for="email" style="color: var(--white);">Email</label>
+              <input type="email" id="email" name="email" placeholder="m@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="phone" style="color: var(--white);">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+27 4567 74921" required>
+            </div>
+            <div class="form-group">
+              <label for="password" style="color: var(--white);">Password</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+              <label for="location" style="color: var(--white);">Service Area</label>
+              <input type="text" id="location" name="location" placeholder="Mthatha" required>
+            </div>
+            <div class="form-group">
+              <label for="profile-picture" style="color: var(--white);">Profile Picture</label>
+              <input type="file" id="profile-picture" name="profile-picture" accept="image/*" required>
+            </div>
+            <div class="step-buttons">
+              <div></div> <!-- Empty div for flex spacing -->
+              <button type="button" class="btn btn-primary next-step" data-next="2">Next</button>
+            </div>
+          </div>
+          
+          <div class="step-content" id="step-2">
+            <div class="form-group">
+              <label for="service-category" style="color: var(--white);">What service do you provide?</label>
+              <select id="service-category" name="service-category" required>
+                <option value="">Select a service category</option>
+                <option value="skilled">Skilled Trades (Plumber, Electrician, Roofer, Builder)</option>
+                <option value="general">General Services (Hairdresser, Gardener, Cleaner, Handyman, Painter)</option>
+                <option value="technical">Technical Services (IT Technician, CCTV Installer, Appliance Repair)</option>
+              </select>
+            </div>
+            <div class="step-buttons">
+              <button type="button" class="btn btn-outline-light prev-step" data-prev="1">Back</button>
+              <button type="button" class="btn btn-primary next-step" data-next="3">Next</button>
+            </div>
+          </div>
+          
+          <div class="step-content" id="step-3">
+            <div id="skilled-technical-fields" style="display: none;">
+              <div class="form-group">
+                <label for="certificate" style="color: var(--white);">Trade Certificate / Business Registration (Required)</label>
+                <input type="file" id="certificate" name="certificate" accept=".pdf,.doc,.docx" required>
+              </div>
+              <div class="form-group">
+                <label for="experience" style="color: var(--white);">Years of Experience</label>
+                <input type="number" id="experience" name="experience" min="0" required>
+              </div>
+              <div class="form-group">
+                <label for="portfolio" style="color: var(--white);">Portfolio (Optional)</label>
+                <input type="file" id="portfolio" name="portfolio" accept="image/*" multiple>
+              </div>
+            </div>
+            
+            <div id="general-fields" style="display: none;">
+              <div class="form-group">
+                <label for="showcase" style="color: var(--white);">Would you like to showcase your work?</label>
+                <input type="file" id="showcase" name="showcase" accept="image/*" multiple>
+              </div>
+              <div class="form-group">
+                <label for="bio" style="color: var(--white);">Short bio about your skills</label>
+                <textarea id="bio" name="bio" placeholder="Tell us about your skills and experience" rows="4"></textarea>
+              </div>
+            </div>
+            
+            <div class="form-group">
+              <label for="terms" style="color: var(--white);">Terms & Conditions</label>
+              <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms" style="color: var(--white); margin: 0;">I agree to the terms and conditions</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="kyc" style="color: var(--white);">KYC (Required: ID Upload for Trust & Safety)</label>
+              <input type="file" id="kyc" name="kyc" accept="image/*" required>
+            </div>
+            <div class="step-buttons">
+              <button type="button" class="btn btn-outline-light prev-step" data-prev="2">Back</button>
+              <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+            </div>
+          </div>
+        </form>
+        
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <p style="color: var(--white);">Already have an account? <a href="login.html" style="color: var(--white); text-decoration: underline;">Login</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts.js"></script>
+  <script>
+    // Step navigation
+    const nextButtons = document.querySelectorAll('.next-step');
+    const prevButtons = document.querySelectorAll('.prev-step');
+    const steps = document.querySelectorAll('.step');
+    const stepContents = document.querySelectorAll('.step-content');
+    
+    nextButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const nextStep = button.getAttribute('data-next');
+        
+        // Validate current step
+        const currentStepContent = button.closest('.step-content');
+        const inputs = currentStepContent.querySelectorAll('input[required], select[required]');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+          if (!input.value) {
+            isValid = false;
+            input.style.borderColor = 'red';
+          } else {
+            input.style.borderColor = '';
+          }
+        });
+        
+        if (!isValid) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+        
+        // Move to next step
+        steps.forEach(step => step.classList.remove('active'));
+        stepContents.forEach(content => content.classList.remove('active'));
+        
+        document.querySelector(`.step[data-step="${nextStep}"]`).classList.add('active');
+        document.getElementById(`step-${nextStep}`).classList.add('active');
+      });
+    });
+    
+    prevButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const prevStep = button.getAttribute('data-prev');
+        
+        steps.forEach(step => step.classList.remove('active'));
+        stepContents.forEach(content => content.classList.remove('active'));
+        
+        document.querySelector(`.step[data-step="${prevStep}"]`).classList.add('active');
+        document.getElementById(`step-${prevStep}`).classList.add('active');
+      });
+    });
+    
+    // Service category selection
+    const serviceCategory = document.getElementById('service-category');
+    const skilledTechnicalFields = document.getElementById('skilled-technical-fields');
+    const generalFields = document.getElementById('general-fields');
+    const submitButton = document.getElementById('submit-button');
+    
+    serviceCategory.addEventListener('change', function() {
+      const value = this.value;
+      
+      if (value === 'skilled' || value === 'technical') {
+        skilledTechnicalFields.style.display = 'block';
+        generalFields.style.display = 'none';
+        submitButton.textContent = 'Submit for Review';
+      } else if (value === 'general') {
+        skilledTechnicalFields.style.display = 'none';
+        generalFields.style.display = 'block';
+        submitButton.textContent = 'Submit for Instant Activation';
+      } else {
+        skilledTechnicalFields.style.display = 'none';
+        generalFields.style.display = 'none';
+      }
+    });
+    
+    // Form submission
+    document.getElementById('register-contractor-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // In a real application, you would send the form data to a server
+      alert('Registration submitted successfully! You can now login.');
+      window.location.href = 'login.html';
+    });
+  </script>
+</body>
+</html>

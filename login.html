@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - ProLiink Connect</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .login-container {
+      max-width: 500px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: var(--border-radius);
+      backdrop-filter: blur(10px);
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 2rem;
+    }
+    
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 1rem;
+      background-color: rgba(255, 255, 255, 0.1);
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .tab:first-child {
+      border-radius: var(--border-radius) 0 0 var(--border-radius);
+    }
+    
+    .tab:last-child {
+      border-radius: 0 var(--border-radius) var(--border-radius) 0;
+    }
+    
+    .tab.active {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    
+    .tab-content {
+      display: none;
+    }
+    
+    .tab-content.active {
+      display: block;
+    }
+    
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">ProLiink Connect</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="login-page" style="background: linear-gradient(to bottom right, var(--primary), var(--secondary)); min-height: calc(100vh - 140px); padding: 2rem 0;">
+    <div class="container">
+      <div class="login-container">
+        <h1 class="section-title" style="color: var(--white); margin-bottom: 1rem;">Login to Your Account</h1>
+        <p class="section-subtitle" style="color: var(--white); margin-bottom: 2rem;">Enter your email or phone number to login</p>
+        
+        <div class="tabs">
+          <div class="tab active" data-tab="email">Email</div>
+          <div class="tab" data-tab="phone">Phone</div>
+        </div>
+        
+        <div class="tab-content active" id="email-tab">
+          <form id="email-login-form" class="login-form">
+            <div class="form-group">
+              <label for="email" style="color: var(--white);">Email</label>
+              <input type="email" id="email" name="email" placeholder="m@example.com" required>
+            </div>
+            <div class="form-group">
+              <label for="password" style="color: var(--white);">Password</label>
+              <input type="password" id="password" name="password" required>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="contractor" name="contractor">
+              <label for="contractor" style="color: var(--white);">I am a contractor</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="admin" name="admin">
+              <label for="admin" style="color: var(--white);">I am an admin</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+        </div>
+        
+        <div class="tab-content" id="phone-tab">
+          <form id="phone-login-form" class="login-form">
+            <div class="form-group">
+              <label for="phone" style="color: var(--white);">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" required>
+            </div>
+            <div class="form-group">
+              <label for="phone-password" style="color: var(--white);">Password</label>
+              <input type="password" id="phone-password" name="password" required>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="phone-contractor" name="contractor">
+              <label for="phone-contractor" style="color: var(--white);">I am a contractor</label>
+            </div>
+            <div class="checkbox-group">
+              <input type="checkbox" id="phone-admin" name="admin">
+              <label for="phone-admin" style="color: var(--white);">I am an admin</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+          </form>
+        </div>
+        
+        <div style="text-align: center; margin-top: 1.5rem;">
+          <a href="forgot-password.html" style="color: var(--white); text-decoration: underline;">Forgot password?</a>
+        </div>
+        
+        <div style="text-align: center; margin-top: 1rem;">
+          <p style="color: var(--white);">Don't have an account? <a href="register-client.html" style="color: var(--white); text-decoration: underline;">Sign up</a></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="copyright">© 2024 ProLiink Connect. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script>
+    // Tab functionality
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+    
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        
+        // Remove active class from all tabs and contents
+        tabs.forEach(t => t.classList.remove('active'));
+        tabContents.forEach(c => c.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        tab.classList.add('active');
+        document.getElementById(`${tabId}-tab`).classList.add('active');
+      });
+    });
+    
+    // Form submission
+    document.getElementById('email-login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleLogin(this);
+    });
+    
+    document.getElementById('phone-login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      handleLogin(this);
+    });
+    
+    function handleLogin(form) {
+      const isContractor = form.querySelector('[name="contractor"]').checked;
+      const isAdmin = form.querySelector('[name="admin"]').checked;
+      
+      if (isAdmin) {
+        window.location.href = 'admin-dashboard.html';
+      } else if (isContractor) {
+        window.location.href = 'contractor-dashboard.html';
+      } else {
+        window.location.href = 'client-dashboard.html';
+      }
+    }
+  </script>
+</body>
+</html>
